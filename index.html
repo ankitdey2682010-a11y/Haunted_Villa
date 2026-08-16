@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle OS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div id="bios-screen">
+    <div class="bios-header">
+PUZZLE BIOS (C) 2026 Puzzle Corp.
+CPU: Quantum Core @ 4.20GHz
+Memory: 16384 MB OK
+System Integrity Check: LOCKED
+
+[SECURITY GATE ACTIVE]: Arrange the power sequence to boot.
+    </div>
+
+    <div class="bios-puzzle-box">
+      <div class="bios-instruction">CLICK TO ALIGN LOGIC SEQUENCE: [ 1 ] - [ 2 ] - [ 3 ]</div>
+      <div class="puzzle-tiles">
+        <button class="bios-btn" id="bios-tile-1" onclick="toggleBiosTile(1)">3</button>
+        <button class="bios-btn" id="bios-tile-2" onclick="toggleBiosTile(2)">1</button>
+        <button class="bios-btn" id="bios-tile-3" onclick="toggleBiosTile(3)">2</button>
+      </div>
+      <div class="bios-actions">
+        <button class="bios-btn" onclick="verifyBios()">VERIFY & BOOT</button>
+        <button class="bios-btn bypass-btn" onclick="autoSolveBios()">BYPASS (AUTO-SOLVE)</button>
+      </div>
+    </div>
+
+    <div class="bios-footer">Press Any Key or Click Bypass to enter Puzzle OS...</div>
+  </div>
+
+  <div id="desktop">
+
+    <div class="desktop-icons">
+      <div class="icon" onclick="openWindow('slider-win')">
+        <div class="icon-img">🧩</div>
+        <div class="icon-label">Tile Slider</div>
+      </div>
+      <div class="icon" onclick="openWindow('memory-win')">
+        <div class="icon-img">🎴</div>
+        <div class="icon-label">Card Match</div>
+      </div>
+      <div class="icon" onclick="openWindow('notes-win')">
+        <div class="icon-img">📝</div>
+        <div class="icon-label">Notepad</div>
+      </div>
+      <div class="icon" onclick="openWindow('specs-win')">
+        <div class="icon-img">⚡</div>
+        <div class="icon-label">System Specs</div>
+      </div>
+    </div>
+
+    <div class="window" id="slider-win" style="top: 80px; left: 160px; width: 340px; display: none;">
+      <div class="window-header" onmousedown="dragStart(event, 'slider-win')">
+        <span>🧩 3x3 Tile Slider</span>
+        <div class="window-controls">
+          <button class="win-btn btn-close" onclick="closeWindow('slider-win')"></button>
+        </div>
+      </div>
+      <div class="window-body text-center">
+        <p class="hint-text">Arrange tiles from 1 to 8 in order.</p>
+        <div class="grid-3x3" id="slider-board"></div>
+        <button class="action-btn" onclick="initSlider()">Shuffle Tiles</button>
+      </div>
+    </div>
+
+    <div class="window" id="memory-win" style="top: 100px; left: 220px; width: 340px; display: none;">
+      <div class="window-header" onmousedown="dragStart(event, 'memory-win')">
+        <span>🎴 Card Match</span>
+        <div class="window-controls">
+          <button class="win-btn btn-close" onclick="closeWindow('memory-win')"></button>
+        </div>
+      </div>
+      <div class="window-body text-center">
+        <p class="hint-text">Find all matching pairs.</p>
+        <div class="memory-grid" id="memory-board"></div>
+        <button class="action-btn" onclick="initMemoryGame()">Restart Game</button>
+      </div>
+    </div>
+
+    <div class="window" id="notes-win" style="top: 140px; left: 300px; width: 380px; height: 280px; display: none;">
+      <div class="window-header" onmousedown="dragStart(event, 'notes-win')">
+        <span>📝 Notepad</span>
+        <div class="window-controls">
+          <button class="win-btn btn-close" onclick="closeWindow('notes-win')"></button>
+        </div>
+      </div>
+      <div class="window-body no-pad">
+        <textarea class="notepad-area" placeholder="Write notes here..."></textarea>
+      </div>
+    </div>
+
+    <div class="window" id="specs-win" style="top: 180px; left: 380px; width: 320px; display: none;">
+      <div class="window-header" onmousedown="dragStart(event, 'specs-win')">
+        <span>⚡ System Telemetry</span>
+        <div class="window-controls">
+          <button class="win-btn btn-close" onclick="closeWindow('specs-win')"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p><strong>OS:</strong> Puzzle OS v1.0</p>
+        <p class="mt-2"><strong>Kernel :</strong> WebKit-POSIX Hybrid</p>
+        <p class="mt-2"><strong>Status :</strong> Active / Unlocked</p>
+        <div class="mt-4">
+          <div class="ram-label">RAM Usage (4.2 / 16 GB)</div>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="taskbar">
+      <div class="taskbar-left">
+        <button class="start-btn" onclick="openWindow('specs-win')">❖ Start</button>
+        <div id="task-buttons"></div>
+      </div>
+      <div class="taskbar-right">
+        <div id="clock-widget">
+          <div id="clock-time">00:00:00</div>
+          <div id="clock-date">--/--/----</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
