@@ -1,6 +1,6 @@
 :root 
 {
-  --bg-dark: #1543ae;
+  --bg-dark: #1f4fc1;
   --taskbar-bg: rgba(12, 24, 51, 0.85);
   --window-bg: #1f2c41;
   --window-header: #334155;
@@ -64,8 +64,8 @@ body, html
 
 .bios-instruction 
 {
-  font-size: 13px;
-  margin-bottom: 12px;
+  font-size: 12px;
+  margin-bottom: 11px;
 }
 
 .puzzle-tiles 
@@ -215,7 +215,7 @@ body, html
 
 .btn-close 
 {
-   background: #b42424; 
+   background: #c11111; 
   }
 
 .window-body 
@@ -376,8 +376,8 @@ body, html
 .grid-3x3 
 {
   display: grid;
-  grid-template-columns: repeat(3, 70px);
-  grid-template-rows: repeat(3, 70px);
+  grid-template-columns: repeat(3, 75px);
+  grid-template-rows: repeat(3, 75px);
   gap: 6px;
   justify-content: center;
   margin-top: 10px;
@@ -408,13 +408,13 @@ body, html
   grid-template-columns: repeat(4, 55px);
   gap: 8px;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 9px;
 }
 
 .card-tile 
 {
-  width: 55px;
-  height: 55px;
+  width: 56px;
+  height: 56px;
   background: #334258;
   border-radius: 6px;
   display: flex;
@@ -430,5 +430,5 @@ body, html
 }
 .card-tile.matched 
 { 
-  background: #19c458; cursor: default; 
+  background: #65c187; cursor: default; 
 }
